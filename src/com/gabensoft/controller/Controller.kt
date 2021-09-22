@@ -1,16 +1,17 @@
 package com.gabensoft.controller
 
+import com.gabensoft.model.PeopleContainer
 import com.gabensoft.model.entities.PersonDAO
 import java.util.*
 
 class Controller {
     private val sc: Scanner = Scanner(System.`in`)
-    private val personas: PersonDAO = PersonDAO()
+    private val personas: PeopleContainer = PeopleContainer()
     fun console() {
         var active = true
         while (active) {
             try {
-                println("Hay "+personas.arraySize()+" personas")
+                println("Hay "+personas.getArraySize()+" personas")
                 print("Ingresa una opcion: ")
                 when (sc.nextLine()) {
                     "0" -> active = false
@@ -48,9 +49,7 @@ class Controller {
         val apellido = sc.nextLine()
         print("Ingresa el correo electrónico: ")
         val email = sc.nextLine()
-        if (personas.create(personas.arraySize(), nombre, apellido, email) == -1) {
-            println("Error creando la persona")
-        }
+        personas.create(personas.getArraySize(), nombre, apellido, email)
     }
 
     fun searchNombre() {
@@ -98,7 +97,7 @@ class Controller {
             if (email.isEmpty()) {
                 email = it.email
             }
-            personas.update(it, nombre, apellido, email)
+            personas.update(id, nombre, apellido, email)
             sc.nextLine()
         } ?: run {
             println("No se encontró a esa persona por ese ID")
@@ -110,7 +109,7 @@ class Controller {
         print("Ingresa el ID de la persona a buscar: ")
         val id = sc.nextInt()
         personas.read(id)?.let {
-            personas.delete(it)
+            personas.delete(id)
             sc.nextLine()
         } ?: run {
             println("No se encontró a esa persona por ese ID")

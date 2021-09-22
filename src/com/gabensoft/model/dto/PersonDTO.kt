@@ -1,4 +1,4 @@
-package com.gabensoft.model.persistence
+package com.gabensoft.model.dto
 
 import java.io.Serializable
 

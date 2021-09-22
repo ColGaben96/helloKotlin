@@ -1,6 +1,6 @@
 package com.gabensoft.model.entities
 
-import com.gabensoft.model.persistence.PersonDTO
+import com.gabensoft.model.dto.PersonDTO
 
 //This is a comment
 class PersonDAO {
@@ -40,6 +40,14 @@ class PersonDAO {
 
     fun arraySize(): Int {
         return persons.size
+    }
+
+    fun restoreArray(restored: ArrayList<PersonDTO>) {
+        persons = restored
+    }
+
+    fun getArray(): ArrayList<PersonDTO>? {
+        return persons
     }
 
     companion object {
